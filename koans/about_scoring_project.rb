@@ -39,13 +39,19 @@ def single_score(die)
   end
 end
 
+def triple_score(dice, total = 0)
+  (1..6).each do |value|
+    if dice.count(value) >= 3
+      total += (value == 1 ? 1000 : 100) * value
+      dice.slice!(dice.index(value), 3)
+    end
+  end
+  return dice, total
+end
+
 def score(dice)
   # You need to write this method
-  total = 0
-  if dice.count(1) >= 3
-    total += 1000
-    dice.delete(1) # Bug: this won't leave extra ones
-  end
+  dice, total = triple_score(dice.sort!)
   dice.each do |one_die|
     total += single_score(one_die)
   end
