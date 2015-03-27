@@ -32,7 +32,12 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 def score(dice)
   # You need to write this method
   total = 0
-  total += 50 if dice.pop == 5
+  one_die = dice.pop
+  if one_die == 5
+    total += 50
+  elsif one_die == 1
+    total += 100
+  end
   total
 end
 
