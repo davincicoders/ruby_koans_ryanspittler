@@ -31,7 +31,9 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 
 def score(dice)
   # You need to write this method
-  0
+  total = 0
+  total += 50 if dice.pop == 5
+  total
 end
 
 class AboutScoringProject < Neo::Koan
