@@ -42,6 +42,10 @@ end
 def score(dice)
   # You need to write this method
   total = 0
+  if dice.count(1) >= 3
+    total += 1000
+    dice.delete(1) # Bug: this won't leave extra ones
+  end
   dice.each do |one_die|
     total += single_score(one_die)
   end
