@@ -29,15 +29,21 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 #
 # Your goal is to write the score method.
 
+def single_score(die)
+  if die == 1
+    100
+  elsif die == 5
+    50
+  else
+    0
+  end
+end
+
 def score(dice)
   # You need to write this method
   total = 0
   dice.each do |one_die|
-    if one_die == 5
-      total += 50
-    elsif one_die == 1
-      total += 100
-    end
+    total += single_score(one_die)
   end
   total
 end
