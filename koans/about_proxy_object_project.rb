@@ -18,7 +18,9 @@ class Proxy
     # ADD MORE CODE HERE
   end
 
-  # WRITE CODE HERE
+  def method_missing(method_name, *args)
+    @object.send(method_name, *args)
+  end
 end
 
 # The proxy object should pass the following Koan:
