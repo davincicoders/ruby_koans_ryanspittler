@@ -14,7 +14,7 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 
 class Proxy
   attr_reader :messages
-  
+
   def initialize(target_object)
     @object = target_object
     @messages = []
@@ -24,6 +24,10 @@ class Proxy
   def method_missing(method_name, *args)
     @messages << method_name
     @object.send(method_name, *args)
+  end
+
+  def called?(method)
+    @messages.include?(method)
   end
 end
 
@@ -73,7 +77,7 @@ class AboutProxyObjectProject < Neo::Koan
     tv.power
 
     assert tv.called?(:power)
-    assert ! tv.called?(:channel)
+    assert !tv.called?(:channel)
   end
 
   def test_proxy_counts_method_calls
@@ -136,7 +140,7 @@ class TelevisionTest < Neo::Koan
     tv.power
     tv.power
 
-    assert ! tv.on?
+    assert !tv.on?
   end
 
   def test_edge_case_on_off
@@ -150,7 +154,7 @@ class TelevisionTest < Neo::Koan
 
     tv.power
 
-    assert ! tv.on?
+    assert !tv.on?
   end
 
   def test_can_set_the_channel
